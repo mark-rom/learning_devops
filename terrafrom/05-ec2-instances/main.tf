@@ -1,18 +1,3 @@
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~>5.89.0"
-    }
-  }
-}
-
-provider "aws" {
-  region = var.region
-  # access_key = "$AWS_ACCESS_KEY_ID"
-  # secret_key = "$AWS_SECRET_ACCESS_KEY"
-}
-
 resource "aws_default_vpc" "default" {
 
 }
@@ -21,9 +6,6 @@ resource "aws_default_vpc" "default" {
 resource "aws_security_group" "http_server_sg" {
   name   = "http_server_sg"
   vpc_id = aws_default_vpc.default.id
-
-  egress  = []
-  ingress = []
 
   lifecycle {
     create_before_destroy = true
